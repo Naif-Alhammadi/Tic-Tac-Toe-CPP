@@ -1,9 +1,10 @@
 #include<iostream>
 #include<vector>
-#include"../Include/include.h"
 #include <string>
 #include<thread>
 #include<chrono>
+#include"../Include/include.h"
+#include"../fileManager/file.h"
 char checkPlayer(int player1Or2) ;
 
 void Game::printGame(char gameArray[][columnIndex])
@@ -128,13 +129,30 @@ bool Game::deleteAchoosenNumber(std::vector<int> &arrayNum, int &indexArrayNum, 
     return isFound;
 }
 // BOT
-void GameWithBot::playingWithBot()
+int GameWithBot::playingWithBot()
 {
-
-    GameWithBot X;
+    std::vector<int> botVector={1,2,3,4,5,6,7,8,9};
     GameWithBot Bot;
     int botIndex = rowIndex * columnIndex;
     srand(time(0));
-    int botChoosenNumber=(rand()%botIndex +1);
-    // Bot.deleteAchoosenNumber(, botIndex, botChoosenNumber);
+    int botChoosenNumber=(rand()%9) +1;
+    while (!(Bot.deleteAchoosenNumber(botVector, botIndex, botChoosenNumber)))
+    {
+        botChoosenNumber=(rand()%9) +1;
+    }
+    return botChoosenNumber;
+}
+
+void GameAccount::gameAccount()
+{
+    std::string name;
+    int age;
+    std::cout<<"Your Name: ";
+    std::cin>>name;
+    std::cout<<"Your Age: ";
+    while (!(std::cin >> age)){
+        std::cout<<"invalid age try again: ";
+    }
+        GameAccount player(name, age);
+        registration(player);
 }

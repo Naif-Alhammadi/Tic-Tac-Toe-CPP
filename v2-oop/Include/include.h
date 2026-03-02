@@ -24,6 +24,20 @@ class Game{
 };
 
 class GameWithBot : public Game {
-private:
-void playingWithBot();
+public:
+int playingWithBot();
+};
+
+class GameAccount{
+    public:
+std::string name;
+int age;
+int points;
+GameAccount(std::string n,int a,int p=0)
+{
+    name=n;
+    age=a;
+    points=p;
+}
+    void gameAccount();
 };
